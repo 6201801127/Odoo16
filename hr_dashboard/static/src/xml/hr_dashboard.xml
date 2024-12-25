@@ -1,0 +1,174 @@
+<templates xml:space="preserve">
+    <t t-name="hr_dashboard_temp_id">
+        <style> .horizontal-line { border: none; border-top: 0.5px solid red; /* Line style */ margin: 5px; /* Space around the line */ } .header-margin{ margin: 10px ; } .padding-div { display: flex; /* Enable flexbox layout */ align-items: center; /* Vertically align items in the center */ gap: 10px; /* Add space between label and select */ } #carSelect { width:90% } .div-shadow{ box-shadow: 20px 20px 50px 10px #86b2bf inset ;width: 100%; height: 300px; overflow: auto; } .scrollable-div {height: 100%; width: 100%;overflow: auto;}</style>
+        <div id="page_1_temp" class="container-fluid main-body scrollable-div" style="pedding-bottom :10px">
+            <div class="header-margin">
+                <h3>Hr Dashboard :</h3>
+                
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card-body div-shadow" style="width: 100%; height: 300px; overflow: auto;">
+                        <div class="card-heading">
+                            <h6>Employee record</h6>
+                        </div>
+                        <hr class="horizontal-line"/>
+                        <t t-if="report_lines">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Id</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Designation</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Work Phone</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Work email</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="report_lines" t-as="data">
+                                        <tr>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['id']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['name']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['job_title']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['work_phone']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['work_email']"/></td>
+
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <p>No employee records available.</p>
+                        </t>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-body div-shadow">
+                        <div class="card-heading">
+                            <h6>Employee Today DOB</h6>
+                        </div>
+                        <hr class="horizontal-line"/>
+                        <t t-if="report_lines">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Id</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Today Birthday</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">DOB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="report_lines" t-as="data">
+                                        <tr>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['id']"/></td>
+                                            
+                                            <!-- Check if today_birthday exists and has data before displaying -->
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">
+                                                <t t-if="data['today_birthday'] and data['today_birthday'][0]">
+                                                    <t t-esc="data['today_birthday'][0]['name']"/>
+                                                </t>
+                                                <t t-else="">
+                                                    No birthday today
+                                                </t>
+                                            </td>
+
+                                            <!-- Check if today_birthday exists and has data before displaying -->
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">
+                                                <t t-if="data['today_birthday'] and data['today_birthday'][0]">
+                                                    <t t-esc="data['today_birthday'][0]['dob_string']"/>
+                                                </t>
+                                                <t t-else="">
+                                                    N/A
+                                                </t>
+                                            </td>
+                                        </tr>
+
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <p>No employee records available.</p>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card-body div-shadow">
+                        <div class="card-heading">
+                            <h6>Employee Department</h6>
+                        </div>
+                        <hr class="horizontal-line"/>
+                        <t t-if="report_lines">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Id</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Department</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="report_lines" t-as="data">
+                                        <tr>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['id']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['name']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['department']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <p>No employee records available.</p>
+                        </t>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-body div-shadow">
+                        <div class="card-heading">
+                            <h6>Employee Leave For Current Month(Based On Status): </h6>
+                        </div>
+                        <hr class="horizontal-line"/>
+                        <t t-if="report_lines">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Id</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">No. of Draft Leaves</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">No. of Pendding Leaves</th>
+
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">No. of Validate Leaves</th>
+                                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">No. of cancel Leave</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="report_lines" t-as="data">
+                                        <tr>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['id']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['name']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['draft_leave_count']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['pending_leave_count']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['validate_leave_count']"/></td>
+                                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><t t-esc="data['cancel_leave_count']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <p>No employee records available.</p>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
