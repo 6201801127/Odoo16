@@ -1,5 +1,5 @@
 <templates xml:space="preserve">
-    <t t-name="hr_dashboard_temp_id">
+    <t t-name="custom_dashboard_temp_id">
         <style> .horizontal-line { border: none; border-top: 0.5px solid red; /* Line style */ margin: 5px; /* Space around the line */ } .header-margin{ margin: 10px ; } .padding-div { display: flex; /* Enable flexbox layout */ align-items: center; /* Vertically align items in the center */ gap: 10px; /* Add space between label and select */ } #carSelect { width:90% } .div-shadow{ box-shadow: 20px 20px 50px 10px #86b2bf inset ;width: 100%; height: 300px; overflow: auto; } .scrollable-div {height: 100%; width: 100%;overflow: auto;}</style>
         <div id="page_1_temp" class="container-fluid main-body scrollable-div" style="pedding-bottom :10px">
             <div class="header-margin">

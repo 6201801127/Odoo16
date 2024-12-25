@@ -1,11 +1,11 @@
-odoo.define('hr_dashboard.hr_dashboard', function (require) {
+odoo.define('custom_dashboard.custom_dashboard', function (require) {
     'use strict';
     var AbstractAction = require('web.AbstractAction');
     var core = require('web.core');
     var rpc = require('web.rpc');
     var QWeb = core.qweb;
 
-    var HrDashboard = AbstractAction.extend({
+    var CustomDashboard = AbstractAction.extend({
         // Start function that triggers when the action is loaded
         start: function () {
             var self = this;
@@ -19,7 +19,7 @@ odoo.define('hr_dashboard.hr_dashboard', function (require) {
                 // Rendering the template with the data received
                 $(".o_menu_apps").find('.dropdown-menu[role="menu"]').removeClass("show");
 
-                self.$el.html(QWeb.render('hr_dashboard_temp_id', {
+                self.$el.html(QWeb.render('custom_dashboard_temp_id', {
                     report_lines: result,
                 }));
             });
@@ -27,6 +27,6 @@ odoo.define('hr_dashboard.hr_dashboard', function (require) {
     });
 
     // Register the action
-    core.action_registry.add("hr_dashboard_action_tag", HrDashboard);
-    return HrDashboard;
+    core.action_registry.add("custom_dashboard_action_tag", CustomDashboard);
+    return CustomDashboard;
 });

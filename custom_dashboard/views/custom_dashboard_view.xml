@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="custom_dashboard_employee_client_id" model="ir.actions.client">
+        <field name="name">Custom dashboard Client Action</field>
+        <field name="tag">custom_dashboard_action_tag</field>
+        <field name="target">main</field>
+    </record>
+
+    <menuitem
+        id="custom_dashboard_client_menu"
+        name="Hr Dashboard"
+        action="custom_dashboard_employee_client_id"
+        sequence="0"/>
+
+</odoo>
